@@ -114,7 +114,7 @@ public class FXMLController {
     	}
     	
     	//check input: stringhe numeriche + wildcard
-    	if (T.matches("[a-z]+") || T.matches("[?]")) {
+    	if (T.matches("[a-z]+") || T.contains("?")) {
     		String S = model.traduci(T);
     		txtStampa.appendText(S);
     	} else {
