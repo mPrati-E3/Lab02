@@ -75,9 +75,13 @@ public class FXMLController {
     	}
     	
     	if (TC.matches("[a-z]+") && TA.matches("[a-z]+")) {
-    		model.inserisci(TC,TA);
-    		txtStampa.appendText("Nuova traduzione inserita con successo! \n");
-    		return;
+    		if (model.inserisci(TC,TA)) {
+    			txtStampa.appendText("Nuova traduzione inserita con successo! \n");
+    			return;
+    		} else {
+    			txtStampa.appendText("Inserimento fallito! Trovata ripetizione! \n");
+    			return;
+    		}
     	} else {
     		txtStampa.appendText("Le scritte non possono contenere numeri o caratteri speciali! \n");
     		return;
@@ -91,6 +95,9 @@ public class FXMLController {
 
     @FXML
     void doTraduci(ActionEvent event) {
+    	
+    	txtStampa.clear();
+    	
     	String T = txtTraduci.getText();
     	T.toLowerCase();
     	txtTraduci.clear();
@@ -100,8 +107,8 @@ public class FXMLController {
     		return;
     	}
     	
-    	if (T.matches("[a-z]+") || T.matches("?")) {
-    		String S = "Traduzione richiesta: "+model.traduci(T)+"\n";
+    	if (T.matches("[a-z]+") || T.matches("[?]")) {
+    		String S = model.traduci(T);
     		txtStampa.appendText(S);
     	} else {
     		txtStampa.appendText("Le scritte non possono contenere numeri o caratteri speciali eccetto '?' \n");
