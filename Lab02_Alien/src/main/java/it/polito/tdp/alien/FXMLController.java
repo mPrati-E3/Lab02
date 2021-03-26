@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class FXMLController {
 	
@@ -40,6 +42,9 @@ public class FXMLController {
 
     @FXML
     private TextArea txtStampa;
+    
+    @FXML
+    private ImageView imgAlieno;
 
     @FXML
     void doClear(ActionEvent event) {
@@ -57,6 +62,8 @@ public class FXMLController {
     	String TA = txtAlieno.getText();
     	TC.toLowerCase();
     	TA.toLowerCase();
+    	txtComune.clear();
+    	txtAlieno.clear();
     	
     	if (TC.length()==0) {
     		txtStampa.appendText("Le scritte non possono essere vuote! \n");
@@ -76,6 +83,8 @@ public class FXMLController {
     		return;
     	}
     	
+    	
+    	
 
 
     }
@@ -84,6 +93,7 @@ public class FXMLController {
     void doTraduci(ActionEvent event) {
     	String T = txtTraduci.getText();
     	T.toLowerCase();
+    	txtTraduci.clear();
     	
     	if (T.length()==0) {
     		txtStampa.appendText("Le scritte non possono essere vuote! \n");
@@ -98,6 +108,7 @@ public class FXMLController {
     		return;
     	}
     	
+    	
     }
 
     @FXML
@@ -109,7 +120,10 @@ public class FXMLController {
         assert btnTraduci != null : "fx:id=\"btnTraduci\" was not injected: check your FXML file 'Scene.fxml'.";
         assert txtTraduci != null : "fx:id=\"txtTraduci\" was not injected: check your FXML file 'Scene.fxml'.";
         assert txtStampa != null : "fx:id=\"txtStampa\" was not injected: check your FXML file 'Scene.fxml'.";
-
+        assert imgAlieno!= null : "fx:id=\"imgAlieno\" was not injected: check your FXML file 'Scene.fxml'.";
+        
+        Image I = new Image("alien.png");
+        imgAlieno.setImage(I);
     }
     
     public void setModel(Model m) {
