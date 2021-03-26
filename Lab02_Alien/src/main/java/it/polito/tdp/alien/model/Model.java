@@ -13,7 +13,7 @@ public class Model {
 	public String traduci(String S) {
 		
 		//gestione wildcard "?"
-		S.replaceAll("?", "\\\\d");
+		//S.replaceAll("?", "\\\\d");
 		
 		//variabili temporaneee
 		int F = 0;
@@ -88,6 +88,7 @@ public class Model {
 			//nuovo campo nel dizionario
 			case 1:
 				List<String> TempC = new ArrayList<String>();
+				TempC.add(tC);
 				Traduzione TempT = new Traduzione(TempC, tA);
 				Diz.getDiz().add(TempT);
 				return true;
