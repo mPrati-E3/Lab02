@@ -44,16 +44,60 @@ public class FXMLController {
     @FXML
     void doClear(ActionEvent event) {
     	txtStampa.clear();
+    	txtComune.clear();
+    	txtAlieno.clear();
+    	txtTraduci.clear();
+    	model.reset();
     }
 
     @FXML
     void doInserisci(ActionEvent event) {
+    	
+    	String TC = txtComune.getText();
+    	String TA = txtAlieno.getText();
+    	TC.toLowerCase();
+    	TA.toLowerCase();
+    	
+    	if (TC.length()==0) {
+    		txtStampa.appendText("Le scritte non possono essere vuote! \n");
+    		return;
+    	}
+    	if (TA.length()==0) {
+    		txtStampa.appendText("Le scritte non possono essere vuote! \n");
+    		return;
+    	}
+    	
+    	if (TC.matches("[a-z]+") && TA.matches("[a-z]+")) {
+    		model.inserisci(TC,TA);
+    		txtStampa.appendText("Nuova traduzione inserita con successo! \n");
+    		return;
+    	} else {
+    		txtStampa.appendText("Le scritte non possono contenere numeri o caratteri speciali! \n");
+    		return;
+    	}
+    	
+
 
     }
 
     @FXML
     void doTraduci(ActionEvent event) {
-
+    	String T = txtTraduci.getText();
+    	T.toLowerCase();
+    	
+    	if (T.length()==0) {
+    		txtStampa.appendText("Le scritte non possono essere vuote! \n");
+    		return;
+    	}
+    	
+    	if (T.matches("[a-z]+") || T.matches("?")) {
+    		String S = "Traduzione richiesta: "+model.traduci(T)+"\n";
+    		txtStampa.appendText(S);
+    	} else {
+    		txtStampa.appendText("Le scritte non possono contenere numeri o caratteri speciali eccetto '?' \n");
+    		return;
+    	}
+    	
     }
 
     @FXML

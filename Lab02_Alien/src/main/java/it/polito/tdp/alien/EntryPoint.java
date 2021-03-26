@@ -37,7 +37,7 @@ public class EntryPoint extends Application {
         
         //scene.getStylesheets().add("/styles/Styles.css");
         
-        stage.setTitle("Indovina il numero");
+        stage.setTitle("Traduttore Alieno");
         stage.setScene(scene);
         stage.show();
     }

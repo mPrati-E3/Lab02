@@ -77,7 +77,7 @@
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
             </HBox>
-            <TextArea fx:id="txtStampa" />
+            <TextArea fx:id="txtStampa" promptText="Benvenuto nel traduttore alieno!" />
          </children>
          <BorderPane.margin>
             <Insets bottom="10.0" />
