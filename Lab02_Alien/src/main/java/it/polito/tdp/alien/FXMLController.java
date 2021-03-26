@@ -46,6 +46,7 @@ public class FXMLController {
     @FXML
     private ImageView imgAlieno;
 
+    //pulisco tutto, sia graficamente che resetto la memoria del dizionario
     @FXML
     void doClear(ActionEvent event) {
     	txtStampa.clear();
@@ -58,13 +59,16 @@ public class FXMLController {
     @FXML
     void doInserisci(ActionEvent event) {
     	
+    	//salvo le stringhe, le formatto e pulisco le textfield
     	String TC = txtComune.getText();
     	String TA = txtAlieno.getText();
     	TC.toLowerCase();
     	TA.toLowerCase();
     	txtComune.clear();
     	txtAlieno.clear();
+    	txtStampa.clear();
     	
+    	//check input: vuoto
     	if (TC.length()==0) {
     		txtStampa.appendText("Le scritte non possono essere vuote! \n");
     		return;
@@ -74,6 +78,7 @@ public class FXMLController {
     		return;
     	}
     	
+    	//check input: stringhe non numeriche
     	if (TC.matches("[a-z]+") && TA.matches("[a-z]+")) {
     		if (model.inserisci(TC,TA)) {
     			txtStampa.appendText("Nuova traduzione inserita con successo! \n");
@@ -96,17 +101,19 @@ public class FXMLController {
     @FXML
     void doTraduci(ActionEvent event) {
     	
+    	//salvo le stringhe, le formatto e pulisco le textfield
     	txtStampa.clear();
-    	
     	String T = txtTraduci.getText();
     	T.toLowerCase();
     	txtTraduci.clear();
     	
+    	//check input: vuoto
     	if (T.length()==0) {
     		txtStampa.appendText("Le scritte non possono essere vuote! \n");
     		return;
     	}
     	
+    	//check input: stringhe numeriche + wildcard
     	if (T.matches("[a-z]+") || T.matches("[?]")) {
     		String S = model.traduci(T);
     		txtStampa.appendText(S);
@@ -129,6 +136,7 @@ public class FXMLController {
         assert txtStampa != null : "fx:id=\"txtStampa\" was not injected: check your FXML file 'Scene.fxml'.";
         assert imgAlieno!= null : "fx:id=\"imgAlieno\" was not injected: check your FXML file 'Scene.fxml'.";
         
+        //carica l'immagine dell'alieno
         Image I = new Image("alien.png");
         imgAlieno.setImage(I);
     }
